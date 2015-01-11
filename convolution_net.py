@@ -1,9 +1,13 @@
+import theano
 from basic_nnet import BasicNNet
 import load_data
 from lasagne import layers
 from lasagne.layers.conv import Conv2DLayer
 from lasagne.layers.pool import MaxPool2DLayer
 from nolearn.lasagne import NeuralNet
+from flip_batch_iterator import FlipBatchIterator
+from adjust_variable import AdjustVariable
+from util import float32
 
 class ConvolutionNet(BasicNNet):
     
@@ -30,11 +34,18 @@ class ConvolutionNet(BasicNNet):
             hidden2_num_units=500,
             output_num_units=30,
             output_nonlinearity=None,
-            
-            update_learning_rate=0.01,
-            update_momentum=0.9,
-            
+
+            #update_learning_rate=0.01,
+            #update_momentum=0.9,
+            update_learning_rate=theano.shared(float32(0.03)),
+            update_momentum=theano.shared(float32(0.9)),
+            on_epoch_finished=[
+                AdjustVariable('update_learning_rate', start=0.03, stop=0.0001),
+                AdjustVariable('update_momentum', start=0.9, stop=0.999),
+                ],
+
             regression=True,
+            batch_iterator_train=FlipBatchIterator(batch_size=128),
             max_epochs=1000,
             verbose=1)
 
