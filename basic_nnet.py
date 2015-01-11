@@ -1,5 +1,9 @@
 import numpy
-from matplotlib import pyplot
+import pickle
+try:
+    from matplotlib import pyplot
+except:
+    pass
 
 class BasicNNet(object):
     
