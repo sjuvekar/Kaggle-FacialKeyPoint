@@ -1,3 +1,4 @@
+import numpy
 from util import float32
 
 class AdjustVariable(object):
@@ -10,7 +11,7 @@ class AdjustVariable(object):
 
     def __call__(self, nn, train_history):
         if self.ls is None:
-            self.ls = nn.net.linspace(self.start, self.stop, nn.net.max_epochs)
+            self.ls = numpy.linspace(self.start, self.stop, nn.max_epochs)
         
         epoch = train_history[-1]["epoch"]
         new_value = float32(self.ls[epoch - 1])
