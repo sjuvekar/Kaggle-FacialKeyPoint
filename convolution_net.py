@@ -20,11 +20,15 @@ class ConvolutionNet(BasicNNet):
                 ("input", layers.InputLayer),
                 ("conv1", Conv2DLayer),
                 ("pool1", MaxPool2DLayer),
+		('dropout1', layers.DropoutLayer),
                 ("conv2", Conv2DLayer),
                 ("pool2", MaxPool2DLayer),
+		('dropout2', layers.DropoutLayer),
                 ("conv3", Conv2DLayer),
                 ("pool3", MaxPool2DLayer),
-                ("hidden1", layers.DenseLayer),
+                ('dropout3', layers.DropoutLayer),
+		("hidden1", layers.DenseLayer),
+		('dropout4', layers.DropoutLayer),
                 ("hidden2", layers.DenseLayer),
                 ("output", layers.DenseLayer)
                 ],
@@ -32,9 +36,14 @@ class ConvolutionNet(BasicNNet):
             conv1_num_filters=32, conv1_filter_size=(3, 3), pool1_ds=(2, 2),
             conv2_num_filters=64, conv2_filter_size=(2, 2), pool2_ds=(2, 2),
             conv3_num_filters=128, conv3_filter_size=(2, 2), pool3_ds=(2, 2),
-            
-            hidden1_num_units=500,
-            hidden2_num_units=500,
+           
+	    dropout1_p=0.1,
+	    dropout2_p=0.2,
+  	    dropout3_p=0.3,
+	    dropout4_p=0.5,
+ 
+            hidden1_num_units=1000,
+            hidden2_num_units=1000,
             output_num_units=30,
             output_nonlinearity=None,
 
@@ -49,7 +58,7 @@ class ConvolutionNet(BasicNNet):
 
             regression=True,
             batch_iterator_train=FlipBatchIterator(batch_size=128),
-            max_epochs=2000,
+            max_epochs=10000,
             verbose=1)
 
 

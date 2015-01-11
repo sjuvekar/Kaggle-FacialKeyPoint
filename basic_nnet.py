@@ -4,6 +4,9 @@ try:
     from matplotlib import pyplot
 except:
     pass
+import sys
+
+sys.setrecursionlimit(10000)
 
 class BasicNNet(object):
     
