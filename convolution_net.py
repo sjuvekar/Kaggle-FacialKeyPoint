@@ -5,7 +5,7 @@ from lasagne.layers.conv import Conv2DLayer
 from lasagne.layers.pool import MaxPool2DLayer
 from nolearn.lasagne import NeuralNet
 
-class ConvolutionNet(object):
+class ConvolutionNet(BasicNNet):
     
     def __init__(self):
         self.net = NeuralNet(

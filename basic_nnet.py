@@ -29,5 +29,5 @@ class BasicNNet(object):
         pyplot.show()
 
     def pickle(self):
-        with open("models/{}.pickle", str(self.__class__.__name__), "wb") as f:
+        with open("models/{}.pickle".format(str(self.__class__.__name__)), "wb") as f:
             pickle.dump(self.net, f, -1)
