@@ -1,11 +1,10 @@
-import numpy
-from matplotlib import pyplot
 import load_data
+from basic_nnet import BasicNNet
 from lasagne import layers
 from lasagne.updates import nesterov_momentum
 from nolearn.lasagne import NeuralNet
 
-class SingleLayerNNet():
+class SingleLayerNNet(BasicNNet):
 
     def __init__(self):
         self.net = NeuralNet(
@@ -29,32 +28,10 @@ class SingleLayerNNet():
             verbose=1)
 
 
-    def fit(self, X, y):
-        self.net.fit(X, y)
-
-
-    def predict(self, x):
-        return self.net.predict(X)
-
-    def plot(self):
-        """
-        Plot train and validation losses from history
-        """
-        train_loss = numpy.array([i["train_loss"] for i in self.net.train_history_])
-        valid_loss = numpy.array([i["valid_loss"] for i in self.net.train_history_])
-        pyplot.plot(train_loss, linewidth=3, label="train")
-        pyplot.plot(valid_loss, linewidth=3, label="valid")
-        pyplot.grid()
-        pyplot.legend()
-        pyplot.xlabel("epoch")
-        pyplot.ylabel("loss")
-        pyplot.ylim(1e-3, 1e-2)
-        pyplot.yscale("log")
-        pyplot.show()
-
 
 if __name__ == "__main__":
     nnet = SingleLayerNNet()
     X,y = load_data.load()
     nnet.fit(X, y)
     nnet.plot()
+    nnet.pickle()
