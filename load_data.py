@@ -31,6 +31,17 @@ def load(test=False, cols=None):
 
     return X,y
 
+
+def load2d(test=False, cols=None):
+    """
+    Loads the 2D image into a 4D data suitable for
+    Convolution net
+    """
+    X, y = load(test, cols)
+    X = X.reshape(-1, 1, 96, 96)
+    return X, y
+
+
 if __name__ == "__main__":
     X,y = load()
     print("X.shape == {}; X.min == {:.3f}; X.max == {:.3f}".format(
