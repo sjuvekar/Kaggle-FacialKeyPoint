@@ -1,5 +1,5 @@
 import numpy
-import pickle
+import cPickle
 try:
     from matplotlib import pyplot
 except:
@@ -34,4 +34,4 @@ class BasicNNet(object):
 
     def pickle(self):
         with open("models/{}.pickle".format(str(self.__class__.__name__)), "wb") as f:
-            pickle.dump(self.net, f, -1)
+            cPickle.dump(self.net, f, -1)

@@ -9,6 +9,9 @@ from flip_batch_iterator import FlipBatchIterator
 from adjust_variable import AdjustVariable
 from util import float32
 
+Conv2DLayer = layers.cuda_convnet.Conv2DCCLayer
+MaxPool2DLayer = layers.cuda_convnet.MaxPool2DCCLayer
+
 class ConvolutionNet(BasicNNet):
     
     def __init__(self):
