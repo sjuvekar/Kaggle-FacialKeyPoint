@@ -9,8 +9,8 @@ class AdjustVariable(object):
         self.ls = None
 
     def __call__(self, nn, train_history):
-        if self.ls in None:
-            self.ls = nn.linspace(self.start, self.stop, nn.max_epochs)
+        if self.ls is None:
+            self.ls = nn.net.linspace(self.start, self.stop, nn.net.max_epochs)
         
         epoch = train_history[-1]["epoch"]
         new_value = float32(self.ls[epoch - 1])

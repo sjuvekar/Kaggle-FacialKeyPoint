@@ -20,7 +20,7 @@ class FlipBatchIterator(BatchIterator):
 
         if yb is not None:
             # Horizontally flip marker positions
-            yb[indices, ::2] = yb[indices, ::] * -1
+            yb[indices, ::2] = yb[indices, ::2] * -1
 
         # Swap places of left and right
         for a, b in self.flip_indices:
