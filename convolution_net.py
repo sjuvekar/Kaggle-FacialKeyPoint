@@ -46,7 +46,7 @@ class ConvolutionNet(BasicNNet):
 
             regression=True,
             batch_iterator_train=FlipBatchIterator(batch_size=128),
-            max_epochs=1000,
+            max_epochs=2000,
             verbose=1)
 
 
@@ -54,5 +54,8 @@ if __name__ == "__main__":
     nnet = ConvolutionNet()
     X,y = load_data.load2d() 
     nnet.fit(X, y)
-    nnet.lot()
+    try:
+        nnet.plot()
+    except:
+        pass
     nnet.pickle()
